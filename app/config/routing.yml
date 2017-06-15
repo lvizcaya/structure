@@ -1,0 +1,60 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    options:
+        avanzu_admin_route: welcome
+
+# Api Rest
+rest_routing :
+    resource: routing_rest.yml
+
+# FOSJsRouting
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+# FOSUser
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile_show:
+    path:   /profile
+    defaults:  { _controller: FOSUserBundle:Profile:show }
+    methods: ["GET"]
+    options:
+        avanzu_admin_route: profile
+
+fos_user_profile_edit:
+    path:   /profile/edit
+    defaults:  { _controller: FOSUserBundle:Profile:edit }
+    methods: ["GET", "POST"]
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+
+# avanzu_admin_all_messages:
+#   path: /messages/
+#   options:
+#       avanzu_admin_route: all_messages
+
+# avanzu_admin_show_message:
+#   path: /messages/{ident}/
+#   options:
+#       avanzu_admin_route: message
+
+# DataTable
+sg_datatables_bundle:
+    resource: "@SgDatatablesBundle/Controller/"
+    type:     annotation
+
+#Images
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

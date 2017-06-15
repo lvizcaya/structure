@@ -1,0 +1,40 @@
+{% block extends %}
+{{ "{% extends 'base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block avanzu_page_subtitle %}" }}
+    {{ "{{ \"" ~ entity_pluralized ~ ".title\"|trans }}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block body %}" }}
+    {{ "{% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}" }}
+        {{ "{% block box_before %}{% endblock %}" }}
+        {{ "{% block box_title %}" }}
+            {{ "{{ \"" ~ entity_pluralized ~ ".title\"|trans }}" }}
+        {{ "{% endblock %}" }}
+        {{ "{% block box_tools %}" }}
+            {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_ADD') %} #}" }}
+                {% if 'new' in actions -%}
+                <a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}" class="btn btn-default btn-flat btn-sm" title="AGREGAR {{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}">
+                    <i class="fa fa-plus"></i>
+                </a>
+                {%- endif %}
+            {{ "{# {% endif %} #}" }}
+        {{ "{% endblock %}" }}
+        {{ "{% block box_body %}" }}
+            {{ "{{ datatable_render(datatable) }}" }}
+        {{ "{% endblock %}" }}
+        {{ "{% block box_footer %}{% endblock %}" }}
+        {{ "{% block box_after %}{% endblock %}" }}
+    {{ "{% endembed %}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block stylesheets %} " }}
+    {{ "{% include ':partials:_header-datatable-extra.html.twig' %}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block head_javascripts %}" }}
+    {{ "{% include ':partials:_scripts-datatable-extra.html.twig' %}" }}
+{{ "{% endblock %}" }}
+{% endblock body %}

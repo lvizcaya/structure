@@ -1,0 +1,57 @@
+{% extends ':admin_theme_bundle:default-layout.html.twig' %}
+
+{% block avanzu_head %}
+    {% block stylesheets %}{% endblock %}
+    <!-- Theme style -->
+    <link rel="stylesheet" href="{{ asset('theme/dist/css/AdminLTE.min.css') }}">
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+      page. However, you can choose any other skin. Make sure you
+      apply the skin class to the body tag so the changes take effect.
+    -->
+    <link rel="stylesheet" href="{{ asset("theme/dist/css/skins/"~avanzu_admin_context.options.skin~".min.css") }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('font/fontello/css/fontello.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/structure.css') }}">    
+{% endblock %}
+
+{% block avanzu_document_title %} :: {{ app_name }} :: {% endblock %}
+
+{% block avanzu_page_title %}{{ app_name }}{% endblock %}
+
+{% block avanzu_page_subtitle %}{% endblock %}
+
+{% block avanzu_navbar_user %}
+    {% include ':admin_theme_bundle:Navbar/user.html.twig' %}
+{% endblock %}
+
+{% block avanzu_sidebar_search %}{# Se elimina si se implementa el search. #}{% endblock %}
+
+{% block avanzu_logo_mini %}
+    <img src="{{ asset('/images/logo_mini.png') }}" weight="100%" height="35">
+{% endblock %}
+
+{% block avanzu_logo_lg %}
+    <img src="{{ asset('/images/logo.png') }}" weight="100%" height="35">
+{% endblock %}
+
+{% block avanzu_page_content %} 
+	{% block submenu %}{% endblock %}
+	{% block body %}{% endblock %} 
+{% endblock %}
+
+{% block avanzu_footer %}
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Versión</b> {{ app_version }}
+        </div>
+        <strong>Copyright &copy; {{ "now"|date("Y") }} <a href="{{ path('homepage') }}">{{ app_name }}</a>.</strong> All rights reserved.
+    </footer>
+{% endblock %}
+
+{% block avanzu_javascripts %}
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+    <script type="text/javascript" src="{{ asset('vendors/noty/packaged/jquery.noty.packaged.min.js') }}"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"></script>
+    <script src="{{ asset('js/tools.js') }}" type="text/javascript"></script>
+    {% block javascripts %}{% endblock %}
+{% endblock %}

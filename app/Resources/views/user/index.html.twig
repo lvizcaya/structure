@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block avanzu_page_subtitle %}{{ "users.title"|trans }}{% endblock %}
+
+{% block body %}
+    {% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}
+        {% block box_before %}{% endblock %}
+        {% block box_title %}
+            {{ "users.title"|trans }}
+        {% endblock %}
+        {% block box_tools %}
+            {% if is_granted('ROLE_USERS_ADD') %}
+                <a href="{{ path('user_new') }}" class="btn btn-default btn-flat btn-sm" title="AGREGAR {{ "user.title"|trans }}">
+                    <i class="fa fa-plus"></i>
+                </a>
+            {% endif %}
+        {% endblock %}
+        {% block box_body %}
+            {{ datatable_render(datatable) }}
+        {% endblock %}
+        {% block box_footer %}{% endblock %}
+        {% block box_after %}{% endblock %}
+    {% endembed %}
+{% endblock %}
+
+{% block stylesheets %} 
+    {% include ':partials:_header-datatable-extra.html.twig' %}
+{% endblock %}
+
+{% block head_javascripts %}
+    {% include ':partials:_scripts-datatable-extra.html.twig' %}
+{% endblock %}

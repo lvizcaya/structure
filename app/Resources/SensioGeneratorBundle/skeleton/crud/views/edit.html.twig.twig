@@ -1,0 +1,70 @@
+{% block extends %}
+{{ "{% extends 'base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block avanzu_page_subtitle %}" }}
+	{{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block submenu %}" }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="my-box" style="padding: 10px;">
+                {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_MENU') %} #}" }}
+                    <a href="{{ "{{ path('" ~ route_name_prefix ~ "_index') }}" }}" class="btn btn-primary btn-flat">
+                        <i class="fa fa-arrow-circle-left"></i>
+                        VOLVER A {{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}
+                    </a>
+                {{ "{# {% endif %} #}" }}
+
+                {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_DELETE') %} #}" }}
+                    {{ '{{ form_start(delete_form, { "attr": {"id": "form-borrar"}}) }}' }}
+		                <input type="submit" value="Borrar" class="btn btn-danger btn-flat">
+		            {{ '{{ form_end(delete_form) }}' }}
+                {{ "{# {% endif %} #}" }}
+            </div>
+        </div>
+    </div>
+{{ "{% endblock %}" }}
+
+{{ "{% block body %}" }}
+	<div class="row">
+        {{ "{# <div class=\"col-md-3\">
+            {% include 'dir/block.html.twig' with {'var': var} %}
+        </div> #}" }}
+        <div class="col-md-6">
+            {{ "{% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}" }}
+                {{ "{% block box_before %}{{ form_start(edit_form) }}{% endblock %}" }}
+                {{ "{% block box_title %}" }}{{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}{{ "{% endblock %}" }}
+                {{ "{% block box_body %}" }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div style="padding: 0 20px;">
+                                {{ "{{ form_widget(edit_form) }}" }}
+                            </div>
+                        </div>
+                    </div>
+                {{ "{% endblock %}" }}
+                {{ "{% block box_footer %}" }}
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-success btn-flat"><strong>{{ "{{ \"save.btn\"|trans }}" }}</strong></button>
+                    </div>
+                {{ "{% endblock %}" }}
+                {{ "{% block box_after %}{{ form_end(edit_form)}}{% endblock %}" }}
+                {{ "{% block box_tools %}{% endblock %}" }}
+            {{ "{% endembed %}" }}
+        </div>
+    </div>
+{{ "{% endblock %}" }}
+
+{{ "{% block stylesheets %} " }}
+    {{ "{% include 'AvanzuAdminThemeBundle:Partials:_header-form-extra.html.twig' %}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block javascripts %}" }}
+    {{ "{% include 'AvanzuAdminThemeBundle:Partials:_scripts-form-extra.html.twig' %}" }}
+    {{ "<script src=\"{{ asset('theme/plugins/input-mask/jquery.inputmask.js') }}\"></script>" }}
+    {{ "<script src=\"{{ asset('theme/plugins/input-mask/jquery.inputmask.extensions.js') }}\"></script>" }}
+{{ "{% endblock %}" }}
+{% endblock body %}

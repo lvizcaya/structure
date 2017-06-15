@@ -1,0 +1,3 @@
+/*4e9902549baf5d311298ac00894b37bd1aa35464*/
+INSERT INTO `structure_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `confirmation_token`, `password_requested_at`, `roles`, `first_name`, `last_name`, `phone`, `avatar`, `created`, `updated`, `is_online`,  `name`) VALUES
+(1, 'admin~', 'admin~', 'admin@gmail.com', 'admin@gmail.com', 1, '8umpue1invggc0g4k8o04kokwwo0k8s', 'JNDlrQ0GGlxOaCS2JJ0b2QP87C4N3ADkzk3Iq1j6/YYRUQFTliWshi+wvjAM7s545I7ZucOu/cmptShGV/gdMQ==', '2016-07-07 01:14:31', NULL, NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 'USUARIO', 'ADMINISTRADOR', NULL, NULL, '2016-07-04 00:00:00', '2016-07-07 01:14:31', 1, 'USUARIO ADMINISTRADOR');

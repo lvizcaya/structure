@@ -1,0 +1,211 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: es
+
+framework:
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    #translator:      ~
+    secret:          "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments:       ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Twig Configuration
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    globals:
+        google_key: "%google_key%"
+        app_name: "%app_name%"
+        app_version: "%app_version%"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   pdo_mysql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #     path:     "%database_path%"
+
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport:  "%mailer_transport%"
+    port:       "%mailer_port%"
+    encryption: "%mailer_encryption%"
+    host:       "%mailer_host%"
+    username:   "%mailer_user%"
+    password:   "%mailer_password%"
+    spool:     
+        type: file
+        path: "%kernel.root_dir%/../var/spool"
+
+fos_user:
+    db_driver: orm 
+    firewall_name: main
+    user_class: AppBundle\Entity\User
+    from_email:
+        address:        info@structure.com
+        sender_name:    STRUCTURE
+    profile:
+        form:
+            type: AppBundle\Form\ProfileType
+
+avanzu_admin_theme:
+    use_twig   : true
+    enable_demo: false
+    theme:
+        default_avatar   : images/avatar.png
+
+        widget:
+            type: default 
+            bordered: true
+            collapsible: false
+            collapsible_title: Ocultar
+            removable: false
+            removable_title: Cerrar
+            solid: false
+            use_footer: false 
+
+        # -- Available --
+        # skin-blue
+        # skin-black
+        # skin-purple
+        # skin-yellow
+        # skin-red
+        # skin-green
+        
+        skin             : skin-blue-light
+        fixed_layout     : false      # -------------------------------------------------------
+        boxed_layout     : false      # these settings relate directly to the "Layout Options"
+        collapsed_sidebar: false      # described in the adminlte documentation
+        mini_sidebar     : true      # -------------------------------------------------------
+        control_sidebar  : false      # controls wether the right hand panel will be rendered  
+
+    knp_menu:                         # knp menu integration     
+        enable         : true          
+        # main_menu      : avanzu_main  # the menu builder alias to use for the main menu
+        # breadcrumb_menu: avanzu_main        # the menu builder alias to use for the breacrumbs
+
+stof_doctrine_extensions:
+    default_locale: es_ES
+    orm:
+        default:
+            timestampable: true
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        business_image:
+            uri_prefix:         /uploads/business
+            upload_destination: '%kernel.root_dir%/../web/uploads/business'
+            namer: vich_uploader.namer_uniqid
+            delete_on_update:   true
+            delete_on_remove:   true
+        user_image:
+            uri_prefix:         /uploads/user
+            upload_destination: '%kernel.root_dir%/../web/uploads/user'
+            namer: vich_uploader.namer_uniqid
+            delete_on_update:   true
+            delete_on_remove:   true
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        my_thumb_40x40:
+            quality: 75
+            filters:
+                thumbnail: { size: [40, 40], mode: outbound }
+        my_thumb_65x65:
+            quality: 90
+            filters:
+                thumbnail: { size: [65, 65], mode: outbound }
+        my_thumb_130x130:
+            quality: 90
+            filters:
+                thumbnail: { size: [130, 130], mode: outbound }
+
+fos_rest:
+    # disable_csrf_role:    null
+    # format_listener:
+    #     rules:
+    #         - { path: '^/api/', fallback_format: json }
+    # routing_loader:
+    #     default_format: json
+    # param_fetcher_listener: true
+    # view:
+    #     view_response_listener: 'force'
+    #     formats:
+    #         json: true
+    #     templating_formats:
+    #         html: true
+
+    disable_csrf_role:    null
+    format_listener:
+        rules:
+            - { path: ^/api/, priorities: [ json ], fallback_format: ~, prefer_extension: true }
+            - { path: ^/, priorities: [ html ], fallback_format: ~, prefer_extension: true }
+    routing_loader:
+        default_format: json
+    view:
+        view_response_listener: true
+        formats:
+            rss: false
+            xml: false
+            jsonp: false
+            json: true
+        templating_formats:
+            html: false
+        force_redirects:
+            html: true
+        failed_validation: HTTP_BAD_REQUEST
+        default_engine: twig
+        empty_content: 204
+
+sg_datatables:
+    datatable:
+        query:
+            search_on_non_visible_columns: true
+
+nelmio_api_doc: ~

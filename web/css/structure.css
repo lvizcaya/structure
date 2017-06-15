@@ -1,0 +1,138 @@
+.body-text {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.my-box {
+    background: none repeat scroll 0 0 #ffffff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.my-well {
+    background-color: #fff;
+    border-radius: 0;
+}
+
+.my-label {
+    border-radius: 0;
+}
+
+.box {
+    border-radius: 0px;
+}
+
+sup.required {
+	font-size:  55%;
+	color: red;
+	cursor:pointer; cursor: hand;
+}
+
+.dataTables_wrapper a {
+    margin-right: 5px;
+}
+
+.btn.btn-file > div.form-group > input[type="file"] {
+    background: white none repeat scroll 0 0;
+    cursor: inherit;
+    display: block;
+    font-size: 100px;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    outline: medium none;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+.btn.btn-file > div.form-group {
+    margin: 0;
+}
+
+.title-color {
+    color: #707070;
+}
+
+#form-borrar {
+    float: right;
+    padding: 0;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+.checkbox label {
+    padding-left: 0;
+    font-weight: 600;
+}
+        
+.buttons-excel {
+    border-radius: 0;
+    position: relative;
+    right: 0;
+    height: 30px;
+    padding: 4px 12px;
+}
+
+.select2-search--inline .select2-search__field:focus {
+    border: 1px solid #fff;
+}
+
+.strong, .strong:hover {
+    color: #222;
+    font-weight: bold;
+}
+
+.weak, .weak:hover {
+    color: #81858C;
+}
+
+.text-white {
+    color:  #fff;
+}
+
+/*.user-panel > .image > img {
+    height: 45px;
+    max-height: 45px;
+    max-width: 45px;
+    width: 45px;
+}*/
+
+.add_link_form_collection {
+    padding-right: 13px; 
+    padding-top: 5px;
+    float: right;
+}
+
+div.my-theme-menu ul.sidebar-menu > li:hover > a, div.my-theme-menu ul.sidebar-menu > li.active > a, 
+div.my-theme-menu ul.sidebar-menu > li > a {
+    background-color: #fff;
+    color: #000;
+}
+
+.box-white {
+    background-color: #fff;
+    border-top: 0;
+}
+
+.info-box-more {
+    bottom: -12px;
+    color: #fff;
+    left: 0;
+    position: relative;
+}
+
+.info-box-more:hover {
+    color: #fff;
+}

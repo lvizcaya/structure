@@ -1,0 +1,36 @@
+<!-- User Account: style can be found in dropdown.less -->
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
+{% set user = app.user %}
+<li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        {% if user.avatar %}
+            <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="user-image" alt="{{ user.name }}" />
+        {% else %}
+            <img src="{{ asset(avanzu_admin_context.default_avatar) }}" class="user-image" alt="{{ user.name }}" />
+        {% endif %}
+        <span class="hidden-xs">{{ user.name }}</span>
+    </a>
+    <ul class="dropdown-menu">
+        <!-- User image -->
+        <li class="user-header">
+            {% if user.avatar %}
+                <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="img-circle" alt="{{ user.name }}" />
+            {% else %}
+                <img src="{{ asset(avanzu_admin_context.default_avatar) }}" class="img-circle" alt="{{ user.name }}" />
+            {% endif %}
+            <p>
+                {{user.name}} {# - {{user.title}} #}
+                <small>{{ 'Member since %date%'|trans({'%date%': user.memberSince|date('m.Y') }) }}</small>
+            </p>
+        </li>
+        <!-- Menu Footer-->
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="{{ path('profile'|route_alias, {'ident' : user.identifier}) }}" class="btn btn-default btn-flat">{{'layout.profile'|trans()}}</a>
+            </div>
+            <div class="pull-right">
+                <a href="{{ logout_path() }}" class="btn btn-default btn-flat">{{ 'layout.singout'|trans() }}</a>
+            </div>
+        </li>
+    </ul>
+</li>

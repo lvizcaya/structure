@@ -1,0 +1,20 @@
+{% extends '::base.html.twig' %}
+
+{% block avanzu_page_subtitle %}{{ 'my_profile.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            {% include "FOSUserBundle:Profile:show_content.html.twig" %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% for flashMessage in app.session.flashbag.get('fos_user_success') %}
+        <script type="text/javascript">
+            addNotification('{{ flashMessage|trans }}', 'success', 'topCenter');
+        </script>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,47 @@
+# Learn more about services, parameters and containers at
+# http://symfony.com/doc/current/service_container.html
+parameters:
+    app.tools.class: AppBundle\Services\Tools
+
+services:
+    app_bundle.show_user_listener:
+        class: AppBundle\EventListener\StructureShowUserListener
+        arguments: ["@security.token_storage"]
+        tags:
+            - { name: kernel.event_listener, event: theme.navbar_user, method: onShowUser }
+            - { name: kernel.event_listener, event: theme.sidebar_user, method: onShowUser }
+
+    app.setup_knp_menu_listener:
+        class: AppBundle\EventListener\SetupKnpMenuListener
+        arguments: ["@security.authorization_checker"]
+        tags:
+            - { name: kernel.event_listener, event: theme.sidebar_setup_knp_menu, method: onSetupMenu }
+
+    # DataTables
+    app.datatable.user:
+        class: AppBundle\Datatables\UserDatatable
+        parent: sg_datatables.datatable.abstract
+    # app.datatable.messages:
+    #     class: AppBundle\Datatables\MessagesDatatable
+    #     parent: sg_datatables.datatable.abstract
+
+    # Over write PasswordResettingListener
+    fos_user.listener.resetting:
+        class: AppBundle\EventListener\PasswordResettingListener
+        arguments: [ "@router", "%fos_user.resetting.token_ttl%" ]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.services.tools:
+        class: %app.tools.class%
+
+    # app.form.messages:
+    #     class: AppBundle\Form\MessagesType
+    #     arguments: ['@security.token_storage', '@security.authorization_checker']
+    #     tags:
+    #         - { name: form.type }
+
+    app.form.profile:
+        class: AppBundle\Form\ProfileType
+        tags:
+            - { name: form.type, alias: app_user_profile }

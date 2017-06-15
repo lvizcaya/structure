@@ -1,0 +1,44 @@
+{% extends '::base.html.twig' %}
+
+{% block avanzu_page_subtitle %}{{ 'my_profile.title'|trans }}{% endblock %}
+
+{% block submenu %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="my-box" style="padding: 10px;">
+                <a href="{{ path('fos_user_profile_show') }}" class="btn btn-primary btn-flat">
+                    <i class="fa fa-arrow-circle-left"></i>
+                    VOLVER A {{ 'my_profile.title'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body -%}
+	{% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+{% endblock %}
+
+{% block stylesheets %} 
+    {% include 'AvanzuAdminThemeBundle:Partials:_header-form-extra.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {% include 'AvanzuAdminThemeBundle:Partials:_scripts-form-extra.html.twig' %}
+    <script src="{{ asset('theme/plugins/input-mask/jquery.inputmask.js') }}"></script>
+    <script src="{{ asset('theme/plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
+    <script src="{{ asset('theme/plugins/input-mask/jquery.inputmask.numeric.extensions.js') }}"></script>
+    <script src="{{ asset('js/tools.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block avanzu_javascripts_inline %}
+    <script>
+        $('input#fos_user_profile_form_phone').inputmask("99999999[9]", {
+            "placeholder": "",
+            allowMinus: false,
+        });
+        $('#fos_user_profile_form_avatarFile').change(function(e) {
+            imagePreview(e, '#user_img'); 
+        });
+    </script>
+{% endblock %}

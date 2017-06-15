@@ -1,0 +1,16 @@
+{% import "AvanzuAdminThemeBundle:layout:macros.html.twig" as macro %}
+<!-- Sidebar user panel -->
+<div class="user-panel">
+    <div class="pull-left image">
+    {% if user.avatar %}
+        <img src="{{ vich_uploader_asset(user, 'avatarFile') }}" class="img-circle" alt="{{ user.name }}" />
+    {% else %}
+        <img src="{{ asset(avanzu_admin_context.default_avatar) }}" class="img-circle" alt="{{ user.name }}" />
+    {% endif %}
+    </div>
+    <div class="pull-left info">
+        <p>{{ user.firstName }}</p>
+
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+    </div>
+</div>

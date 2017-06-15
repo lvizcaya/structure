@@ -1,0 +1,97 @@
+layout.profile: "PERFIL"
+layout.singout: "SALIR"
+profile.flash.updated: "Su Perfil ha sido actualizado"
+security.login.bad_credentials: "Su usuario y/o Contraseña no coinciden"
+change_password.flash.success: "Su Contraseña ha sido actualizada"
+resetting.flash.success: "Su Contraseña ha sido actualizada"
+resetting:
+    password_already_requested: La contraseña para este usuario ya ha sido solicitada dentro de las 24 horas.
+    check_email: Un email ha sido enviado a %email%. Contiene un enlace de activación que debes presionar para restablecer tu contraseña.
+    request:
+        invalid_username: El usuario o dirección de correo "%username%" no existe.
+        username: "Nombre de usuario:"
+        submit: Restablecer contraseña
+    reset:
+        submit: Cambiar contraseña
+    flash:
+        success: La contraseña se ha cambiado con éxito
+    email:
+        subject: Bienvenido %username%!
+        message : |
+            Hola %username%!
+
+            Para restablecer tu contraseña - por favor visita %confirmationUrl%
+
+            Atentamente,
+            el Equipo.
+This is a mandatory field: "Este campo es obligatorio"
+form.current_password: "Contraseña actual:"
+
+#theme
+Member since %date%: Miembro desde %date%
+
+# Menú
+sidebar.title: "MENÚ"
+sidebar.dashboard: Dashboard
+sidebar.users: Usuarios
+
+# Titles
+ubication.title: UBICACIÓN
+comunication.title: CONTACTO
+information.title: INFORMACIÓN
+parameters.title: PARÁMETROS
+users.title: USUARIOS
+user.title: USUARIO
+messages.title: MENSAJES
+folders.title: CARPETAS
+inbox.title: RECIBIDOS
+compose.title: REDACTAR
+send.title: ENVIADOS
+my_profile.title: MI PERFIL
+dashboard.title: DASHBOARD
+message_no_read.title: MENSAJES SIN LEER
+report.title: "REPORTES"
+
+# Buttons
+save.btn: GUARDAR
+edit.btn: EDITAR
+filter.btn: BUSCAR
+excel.btn: EXCEL
+profile.edit.submit: ACTUALIZAR PERFIL
+
+# User
+user.firstName.label: "Nombres:"
+user.lastName.label: "Apellidos:"
+user.phone.label: "Número Telefónico:"
+user.email.label: "Correo Electrónico:"
+user.enabled.label: "Usuario Activo"
+user.avatarFile.label: EXPLORAR
+user.created.label: "Miembro desde:"
+user.roles.label: "Permisos:"
+
+# User Datatable
+datatable.user.avatar.title: AVATAR
+datatable.user.businessName.title: RAZÓN SOCIAL
+datatable.user.businessType.title: TIPO
+datatable.user.firstName.title: NOMBRES
+datatable.user.lastName.title: APELLIDOS
+datatable.user.email.title: CORREO ELECTRÓNICO
+
+# Messages
+select2.messages.placeholder: "Para"
+messages.msubject.placeholder: "Asunto"
+messages.mto.label: ""
+messages.msubject.label: ""
+messages.mbody.label: ""
+messages.btn.send: "ENVIAR"
+messages.btn.delete: "ELIMINAR"
+messages.btn.add: "AGREGAR"
+messages.fileUpload.label: "ADJUNTAR"
+messages.from.label: "De: "
+messages.to.label: "Para: "
+
+# Messages Datatable
+datatable.messages.name.title: ""
+datatable.messages.msubject.title: ""
+datatable.messages.date.title: "."
+datatable.messages.delete.btn: BORRAR

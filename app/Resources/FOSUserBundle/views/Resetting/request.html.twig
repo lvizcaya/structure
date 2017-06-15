@@ -1,0 +1,39 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% block content %}
+    {% block fos_user_content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-xs-10 col-xs-offset-1">
+                    <div style="margin: 17% auto; width: 400px;">
+                        <div class="login-logo">
+                            <a href="{{ path('homepage') }}" title="">
+                                <img src="{{ asset('images/Logo.png') }}" width="200" height="100%" >
+                            </a>
+                        </div>
+                        <div class="box box-solid" style="border: 1px solid #C9C9C9;">
+                            <div class="box-body" style="padding: 20px;">
+                                <p class="login-box-msg">
+                                    <strong>¿OLVIDASTE TU CONTRASEÑA?</strong>
+                                </p>
+                                {% if invalid_username is defined %}
+                                    <div class="alert alert-danger alert-dismissable">
+                                        <a class="close" data-dismiss="alert">×</a>
+                                        <strong>Upss! un Error. </strong>
+                                        {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+                                    </div>
+                                {% endif %}
+                                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" id="username" name="username" required placeholder="Correo Electrónico o Nombre de Usuario" />
+                                    </div>
+                                    <button class="btn btn-primary btn-flat pull-right" type="submit">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,106 @@
+{% block extends %}
+{{ "{% extends 'base.html.twig' %}" }}
+{% endblock extends %}
+
+{% block body %}
+{{ "{% block avanzu_page_subtitle %}" }}
+    {{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block submenu %}" }}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="my-box" style="padding: 10px;">
+                {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_MENU') %} #}" }}
+                    <a href="{{ "{{ path('" ~ route_name_prefix ~ "_index') }}" }}" class="btn btn-primary btn-flat">
+                        <i class="fa fa-arrow-circle-left"></i>
+                        VOLVER A {{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}
+                    </a>
+                {{ "{# {% endif %} #}" }}
+
+                {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_DELETE') %} #}" }}
+                    {{ '{{ form_start(delete_form, { "attr": {"id": "form-borrar"}}) }}' }}
+                        <input type="submit" value="Borrar" class="btn btn-danger btn-flat">
+                    {{ '{{ form_end(delete_form) }}' }}
+                {{ "{# {% endif %} #}" }}
+            </div>
+        </div>
+    </div>
+{{ "{% endblock %}" }}
+
+{{ "{% block body %}" }}
+    <div class="row">
+        {{ "{# <div class=\"col-md-3\">
+            {% include 'dir/block.html.twig' with {'var': var} %}
+        </div> #}" }}
+        <div class="col-md-6">
+            {{ "{% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}" }}
+                {{ "{% block box_before %}{% endblock %}" }}
+                {{ "{% block box_title %}" }}{{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}{{ "{% endblock %}" }}
+                {{ "{% block box_tools %}" }}
+                        
+                    {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_EDIT') %} #}" }}
+
+                        <a href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', {id: " ~ entity_singularized ~ ".id}) }}" }}" class="btn btn-default btn-flat btn-sm" title="{{ "EDITAR {{ '" ~ entity_singularized ~ ".title'|trans }}" }}"><i class="fa fa-pencil"></i></a>
+
+                    {{ "{# {% endif %} #}" }}
+                
+                {{ "{% endblock %}" }}
+                {{ "{% block box_body %}" }}
+
+                    <table>
+                        <tbody>
+                        {%- for field, metadata in fields %}
+
+                            <tr>
+                                <th>{{ field|capitalize }}</th>
+
+                            {%- if metadata.type in ['datetime'] %}
+
+                                <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d H:i:s\') }}{% endif %}' }}</td>
+
+                            {%- elseif metadata.type in ['date'] %}
+
+                                <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'Y-m-d\') }}{% endif %}' }}</td>
+
+                            {%- elseif metadata.type in ['time'] %}
+
+                                <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|date(\'H:i:s\') }}{% endif %}' }}</td>
+
+                            {%- elseif metadata.type in ['array'] %}
+
+                                <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ '|join(\', \') }}{% endif %}' }}</td>
+
+                            {%- elseif metadata.type in ['boolean'] %}
+
+                                <td>{{ '{% if ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' %}Sí{% else %}No{% endif %}' }}</td>
+
+                            {%- else %}
+
+                                <td>{{ '{{ ' ~ entity_singularized ~ '.' ~ field|replace({'_': ''}) ~ ' }}' }}</td>
+
+                            {%- endif %}
+
+                            </tr>
+
+                        {%- endfor %}
+
+                        </tbody>
+                    </table>
+
+                {{ "{% endblock %}" }}
+                {{ "{% block box_footer %}{% endblock %}" }}
+                {{ "{% block box_after %}{% endblock %}" }}
+            {{ "{% endembed %}" }}
+        </div>
+    </div>
+{{ "{% endblock %}" }}
+
+{{ "{% block stylesheets %}" }}
+    {{ "{% include ':partials:_header-datatable-extra.html.twig' %}" }}
+{{ "{% endblock %}" }}
+
+{{ "{% block head_javascripts %}" }}
+    {{ "{% include ':partials:_scripts-datatable-extra.html.twig' %}" }}
+{{ "{% endblock %}" }}
+{% endblock body %}

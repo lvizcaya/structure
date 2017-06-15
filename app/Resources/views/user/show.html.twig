@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block avanzu_page_subtitle %}{{ "users.title"|trans }}{% endblock %}
+
+{% block submenu %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="my-box" style="padding: 10px;">
+                <a href="{{ path('user_index') }}" class="btn btn-primary btn-flat">
+                    <i class="fa fa-arrow-circle-left"></i>
+                    VOLVER A {{ "users.title"|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-9">
+            {% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}
+                {% block box_before %}{% endblock %}
+                {% block box_title %}{{ "user.title"|trans }}{% endblock %}
+                {% block box_tools %}
+                    {% if is_granted('ROLE_USERS_EDIT') %}
+                        <a href="{{ path('user_edit', {id: user.id}) }}" class="btn btn-default btn-flat btn-sm" title="EDITAR {{ "user.title"|trans }}"><i class="fa fa-pencil"></i></a>
+                    {% endif %}
+                {% endblock %}
+                {% block box_body %}
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center" style="margin-top: 10px;">
+                                {% if user.avatar %}
+                                    <img id="user_img" src="{{ vich_uploader_asset(user, 'avatarFile')|imagine_filter('my_thumb_130x130') }}" alt="{{ user.name }}" style="min-width: 130px; min-height: 130px; max-width: 130px; max-height: 130px;" />
+                                {% else %}
+                                    <img id="user_img" src="{{ asset('images/avatar.png')|imagine_filter('my_thumb_130x130') }}" alt="{{ user.name }}" style="min-width: 130px; min-height: 130px; max-width: 130px; max-height: 130px;" />
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="" style="padding: 0 20px;">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th>{{ "user.firstName.label"|trans }}</th>
+                                            <td>{{ user.firstName }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "user.lastName.label"|trans }}</th>
+                                            <td>{{ user.lastName }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "user.phone.label"|trans }}</th>
+                                            <td>{{ user.phone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "user.email.label"|trans }}</th>
+                                            <td>{{ user.email }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "user.created.label"|trans }}</th>
+                                            <td>{% if user.created %}{{ user.created|date('d/m/Y') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "user.enabled.label"|trans }}</th>
+                                            <td>{% if user.enabled %}Sí{% else %}No{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{{ "user.roles.label"|trans }}</th>
+                                            <td class="">
+                                                <table>
+                                                    {% for rol in user.roles %}
+                                                        <tr>
+                                                            <td>
+                                                                {% if rol == 'ROLE_ADMIN' %}
+                                                                    <small>Administrador</small>
+                                                                {% endif %}
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+                {% block box_footer %}{% endblock %}
+                {% block box_after %}{% endblock %}
+            {% endembed %}
+        </div>
+    </div>
+{% endblock %}

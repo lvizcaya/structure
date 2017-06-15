@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-9">
+        {% embed 'AvanzuAdminThemeBundle:Widgets:box-widget.html.twig' %}
+            {% block box_before %}
+            	{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+            {% endblock %}
+            {% block box_title %}{{ 'my_profile.title'|trans }}{% endblock %}
+            {% block box_body %}
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="text-center" style="margin-top: 10px;">
+                            {% if app.user.avatar %}
+                                <img id="user_img" src="{{ vich_uploader_asset(app.user, 'avatarFile')|imagine_filter('my_thumb_130x130') }}" alt="{{ app.user.name }}" style="min-width: 130px; min-height: 130px; max-width: 130px; max-height: 130px;" />
+                            {% else %}
+                                <img id="user_img" src="{{ asset('images/avatar.png')|imagine_filter('my_thumb_130x130') }}" alt="{{ app.user.name }}" style="min-width: 130px; min-height: 130px; max-width: 130px; max-height: 130px;" />
+                            {% endif %}
+                        </div>
+                        <div class="text-center" style="margin-top: 10px;">
+                            {{ form_widget(form.avatarFile) }}
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="" style="padding: 0 20px;">
+                            {{ form_widget(form) }}
+                        </div>
+                    </div>
+                </div>
+                {{ form_rest(form) }}
+            {% endblock %}
+            {% block box_footer %}
+                <div class="pull-right">
+                    <button type="submit" class="btn btn-success btn-flat"><strong>{{ 'profile.edit.submit'|trans }}</strong></button>
+                </div>
+            {% endblock %}
+            {% block box_after %}{{ form_end(form)}}{% endblock %}
+            {% block box_tools %}{% endblock %}
+        {% endembed %}
+    </div>
+</div>

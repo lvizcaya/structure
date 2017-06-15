@@ -1,0 +1,98 @@
+# To get started with security, check out the documentation:
+# http://symfony.com/doc/current/security.html
+security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    role_hierarchy:
+        ROLE_INDUSTRY:  [ROLE_INDUSTRY_MENU, ROLE_INDUSTRY_ADD, ROLE_INDUSTRY_EDIT, ROLE_INDUSTRY_DELETE, ROLE_INDUSTRY_SHOW]
+        ROLE_PRODUCER:  [ROLE_PRODUCER_MENU, ROLE_PRODUCER_ADD, ROLE_PRODUCER_EDIT, ROLE_PRODUCER_DELETE, ROLE_PRODUCER_SHOW]              
+        ROLE_REGISTER:  [ROLE_REGISTER_MENU, ROLE_REGISTER_ADD, ROLE_REGISTER_EDIT, ROLE_REGISTER_DELETE, ROLE_REGISTER_SHOW]
+        ROLE_USERS:     [ROLE_USERS_MENU, ROLE_USERS_ADD, ROLE_USERS_SHOW, ROLE_USERS_EDIT, ROLE_USERS_DELETE]
+        
+        # Modules Remission
+        ROLE_REMISSION_EDITION: [ROLE_REMISSION_MENU, ROLE_REMISSION_ADD, ROLE_REMISSION_EDIT, ROLE_REMISSION_DELETE]
+        ROLE_REMISSION_SHOWING: [ROLE_REMISSION_MENU, ROLE_REMISSION_SHOW]
+        
+        # Modules Analysis
+        ROLE_ANALYSIS_EDITION:  [ROLE_ANALYSIS_MENU, ROLE_ANALYSIS_ADD, ROLE_ANALYSIS_EDIT, ROLE_ANALYSIS_DELETE]
+        ROLE_ANALYSIS_SHOWING: [ROLE_ANALYSIS_MENU, ROLE_ANALYSIS_SHOW]
+
+        # Modules Liquidation
+        ROLE_LIQUIDATION_EDITION:  [ROLE_LIQUIDATION_MENU, ROLE_LIQUIDATION_ADD, ROLE_LIQUIDATION_EDIT, ROLE_LIQUIDATION_DELETE, ROLE_LIQUIDATION_FILES]
+        ROLE_LIQUIDATION_SHOWING:  [ROLE_LIQUIDATION_MENU, ROLE_LIQUIDATION_SHOW, ROLE_LIQUIDATION_FILES]
+
+        # Module Messages
+        ROLE_MESSAGES_USER: [ROLE_MESSAGES]
+
+        ROLE_CONFIRMATORY_REMISSION:  [ROLE_CONFIRMATORY_REMISSION_MENU, ROLE_CONFIRMATORY_REMISSION_CONFIRM]
+        ROLE_CONFIRMATORY_ANALYSIS:   [ROLE_CONFIRMATORY_ANALYSIS_MENU, ROLE_CONFIRMATORY_ANALYSIS_CONFIRM]
+
+        # Modules Transcriptor & Confirmatory
+        ROLE_TRANSCRIPTOR_USER: [ROLE_TRANSCRIPTOR]
+        ROLE_CONFIRMATORY_USER: [ROLE_CONFIRMATORY_REMISSION, ROLE_CONFIRMATORY_ANALYSIS]
+
+        # Module Animal
+        ROLE_CATTLE_EDITION:    [ROLE_CATTLE_MENU, ROLE_CATTLE_ADD, ROLE_CATTLE_EDIT, ROLE_CATTLE_DELETE]
+        ROLE_CATTLE_SHOWING:    [ROLE_CATTLE_MENU, ROLE_CATTLE_SHOW]
+        ROLE_CATTLE:            [ROLE_CATTLE_EDITION, ROLE_CATTLE_SHOWING]
+
+        # Users Industry & Producer
+        ROLE_INDUSTRY_USER:  [ROLE_PRODUCER_MENU, ROLE_PRODUCER_SHOW, ROLE_REGISTER]
+        ROLE_PRODUCER_USER:  [ROLE_REGISTER_MENU, ROLE_REGISTER_EDIT, ROLE_REGISTER_EDIT_ALL, ROLE_REGISTER_SHOW]
+        
+        ROLE_ADMIN:       [ROLE_USER, ROLE_INDUSTRY, ROLE_PRODUCER, ROLE_REGISTER, ROLE_REGISTER_EDIT_ALL, ROLE_USERS, ROLE_REMISSION_EDITION, ROLE_ANALYSIS_EDITION, ROLE_LIQUIDATION_EDITION, ROLE_CONFIRMATORY_USER, ROLE_MESSAGES_USER, ROLE_CATTLE_SHOWING]
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username_email
+
+    firewalls:
+        # disables authentication for assets and the profiler, adapt it according to your needs
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                default_target_path: /
+                always_use_default_target_path: true
+                failure_path: fos_user_security_login
+            logout:       true
+            anonymous:    true
+            remember_me:
+                secret:     '%secret%'
+                lifetime:   31536000
+                path:       /
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/business/industry$, role: ROLE_INDUSTRY_MENU }
+        - { path: ^/business/producer$, role: ROLE_PRODUCER_MENU }
+        - { path: ^/register$, role: ROLE_REGISTER_MENU }
+        - { path: ^/user$, role: ROLE_USERS_MENU }
+        - { path: ^/remission$, role: ROLE_REMISSION_MENU }
+        - { path: ^/analysis$, role: ROLE_ANALYSIS_MENU }
+        - { path: ^/liquidation$, role: ROLE_LIQUIDATION_MENU }
+        - { path: ^/confirmation/remission$, role: ROLE_CONFIRMATORY_REMISSION_MENU }
+        - { path: ^/confirmation/analysis$, role: ROLE_CONFIRMATORY_ANALYSIS_MENU }
+        - { path: ^/messages/*, role: ROLE_MESSAGES }
+        - { path: ^/lot$, role: ROLE_CATTLE_MENU }
+        - { path: ^/cattle$, role: ROLE_CATTLE_MENU }
+
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/api/doc, role: ROLE_ADMIN }
+        - { path: ^/breed/*, role: ROLE_ADMIN }
+        - { path: ^/treatment/*, role: ROLE_ADMIN }
+        - { path: ^/medicament/*, role: ROLE_ADMIN }
+        - { path: ^/way/*, role: ROLE_ADMIN }
+        - { path: ^/birthtype/*, role: ROLE_ADMIN }
+
+        - { path: ^/, role: ROLE_USER }

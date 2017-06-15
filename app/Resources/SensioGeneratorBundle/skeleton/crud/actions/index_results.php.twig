@@ -1,0 +1,32 @@
+    /**
+{% block phpdoc_method_header %}
+     * Lists Results.
+{% endblock phpdoc_method_header %}
+     *
+{% block phpdoc_method_annotations %}
+{% if 'annotation' == format %}
+     * @Route("/{{ route_name_prefix }}/results", name="{{ route_name_prefix }}_results")
+{% endif %}
+{% endblock phpdoc_method_annotations %}
+     */
+{% block method_definition %}
+    public function indexResultsAction()
+{% endblock method_definition %}
+    {
+{% block method_body %}
+        $em = $this->getDoctrine()->getManager();
+        // $user_sesion = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        $datatable = $this->get('app.datatable.{{ entity_singularized }}');
+        $datatable->buildDatatable();
+        $query = $this->get('sg_datatables.query')->getQueryFrom($datatable);
+        /* $function = function($qb) use ($relation)
+        {
+            $qb->andWhere('structure_user.relation = '.$relation->getId());
+        };
+        $query->addWhereAll($function); */
+{% endblock method_body %}
+{% block method_return %}
+        return $query->getResponse();
+{% endblock method_return %}
+    }

@@ -1,0 +1,18 @@
+table#messages_datatable th {
+    color: #fff;
+}
+
+table#messages_datatable td {
+    padding-top: 3px;
+    padding-bottom: 3px; 
+    vertical-align: middle;
+}
+
+table#messages_datatable {
+    border-bottom: 1px solid #f4f4f4;
+    font-size: 90%;
+}
+
+.small {
+    font-size: 85%;
+}
