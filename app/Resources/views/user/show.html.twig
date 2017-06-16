@@ -23,7 +23,7 @@
                 {% block box_title %}{{ "user.title"|trans }}{% endblock %}
                 {% block box_tools %}
                     {% if is_granted('ROLE_USERS_EDIT') %}
-                        <a href="{{ path('user_edit', {id: user.id}) }}" class="btn btn-default btn-flat btn-sm" title="EDITAR {{ "user.title"|trans }}"><i class="fa fa-pencil"></i></a>
+                        <a href="{{ path('user_edit', {id: user.id}) }}" class="btn btn-default btn-flat btn-sm" title="EDITAR {{ "user.title"|trans }}"><i class="glyphicon glyphicon-edit"></i></a>
                     {% endif %}
                 {% endblock %}
                 {% block box_body %}
