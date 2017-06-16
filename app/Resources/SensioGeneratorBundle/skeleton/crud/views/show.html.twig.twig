@@ -38,13 +38,9 @@
                 {{ "{% block box_before %}{% endblock %}" }}
                 {{ "{% block box_title %}" }}{{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}{{ "{% endblock %}" }}
                 {{ "{% block box_tools %}" }}
-                        
                     {{ "{# {% if is_granted('ROLE_" ~ entity|upper ~ "_EDIT') %} #}" }}
-
                         <a href="{{ "{{ path('" ~ route_name_prefix ~ "_edit', {id: " ~ entity_singularized ~ ".id}) }}" }}" class="btn btn-default btn-flat btn-sm" title="{{ "EDITAR {{ '" ~ entity_singularized ~ ".title'|trans }}" }}"><i class="fa fa-pencil"></i></a>
-
                     {{ "{# {% endif %} #}" }}
-                
                 {{ "{% endblock %}" }}
                 {{ "{% block box_body %}" }}
 

@@ -18,8 +18,9 @@
                 {% if 'new' in actions -%}
                 <a href="{{ "{{ path('" ~ route_name_prefix ~ "_new') }}" }}" class="btn btn-default btn-flat btn-sm" title="AGREGAR {{ "{{ \"" ~ entity_singularized ~ ".title\"|trans }}" }}">
                     <i class="fa fa-plus"></i>
-                </a>
-                {%- endif %}
+                </a> 
+                
+                {%- endif %} 
             {{ "{# {% endif %} #}" }}
         {{ "{% endblock %}" }}
         {{ "{% block box_body %}" }}
