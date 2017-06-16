@@ -2,6 +2,13 @@
     "name": "lvizcaya/structure",
     "license": "free",
     "type": "project",
+    "authors": [
+        {
+            "name": "Leonardo Vizcaya",
+            "email": "vizcayaleonardo@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "": "src/"
