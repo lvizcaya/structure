@@ -117,11 +117,7 @@ class User extends BaseUser
 
     public function getNameFull()
     {
-        if ($this->getBusiness()) {
-            return $this->getName().' ('.$this->getBusiness()->getBusinessName().')';
-        } else {
-            return $this->getName();
-        }
+        return $this->getName();
     }
 
     /**

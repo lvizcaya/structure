@@ -19,14 +19,8 @@
 /var/spool/*
 !/doc
 /doc/*
-!/web/uploads/business
-/web/uploads/business/*
 !/web/uploads/user
 /web/uploads/user/*
-!/web/uploads/liquidation
-/web/uploads/liquidation/*
-!/web/uploads/message
-/web/uploads/message/*
 !/web/media
 /web/media/*
 *.sublime-project

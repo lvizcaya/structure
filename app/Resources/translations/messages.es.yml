@@ -71,8 +71,6 @@ user.roles.label: "Permisos:"
 
 # User Datatable
 datatable.user.avatar.title: AVATAR
-datatable.user.businessName.title: RAZÓN SOCIAL
-datatable.user.businessType.title: TIPO
 datatable.user.firstName.title: NOMBRES
 datatable.user.lastName.title: APELLIDOS
 datatable.user.email.title: CORREO ELECTRÓNICO
