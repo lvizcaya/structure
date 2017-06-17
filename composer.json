@@ -1,7 +1,8 @@
 {
     "name": "lvizcaya/structure",
-    "license": "free",
+    "license": "MIT",
     "type": "project",
+    "version": "0.1",
     "authors": [
         {
             "name": "Leonardo Vizcaya",
