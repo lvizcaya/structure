@@ -35,6 +35,10 @@ class User extends BaseUser
      *
      * @ORM\Column(name="first_name", type="string", length=100)
      * @Assert\NotBlank(message="Este campo no puede permanecer en blanco.")
+     * @Assert\Length(
+     *      min="3",
+     *      minMessage="Debe tener por lo menos {{ limit }} caracteres"
+     * )
      */
     private $firstName;
 
@@ -43,6 +47,10 @@ class User extends BaseUser
      *
      * @ORM\Column(name="last_name", type="string", length=100)
      * @Assert\NotBlank(message="Este campo no puede permanecer en blanco.")
+     * @Assert\Length(
+     *      min="3",
+     *      minMessage="Debe tener por lo menos {{ limit }} caracteres"
+     * )
      */
     private $lastName;
 

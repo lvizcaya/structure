@@ -31,6 +31,9 @@ class ProfileType extends AbstractType
             ->add('phone', TextType::class, [
                 'label' => 'user.phone.label',
                 'required' => false,
+                'attr' => [
+                    'data-intype' => 'phone',
+                ],
             ])
             ->add('avatarFile', VichImageType::class, [
                 'label' => 'user.avatarFile.label',
@@ -39,6 +42,7 @@ class ProfileType extends AbstractType
                 'download_link' => false,
                 'attr' => [
                     'class' => "btn btn-primary btn-file btn-flat",
+                    'data-intype' => 'imagePreview',
                 ]
             ])
             ->add('current_password', LegacyFormHelper::getType('Symfony\Component\Form\Extension\Core\Type\PasswordType'), array(

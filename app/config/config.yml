@@ -88,6 +88,15 @@ fos_user:
     profile:
         form:
             type: AppBundle\Form\ProfileType
+    registration:
+        confirmation:
+            enabled: true
+            template:   FOSUserBundle:Registration:email.txt.twig
+        form:
+            type: AppBundle\Form\RegistrationType
+    resetting:
+        form:
+            type: AppBundle\Form\ResettingType
 
 avanzu_admin_theme:
     use_twig   : true

@@ -19,7 +19,19 @@
                                     <strong>RESTABLECER CONTRASEÑA</strong>
                                 </p>
                                 {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
-                                    {{ form_widget(form) }}
+
+                                    <div class="form-group has-feedback">
+                                        {{ form_widget(form.plainPassword.first) }}
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        {{ form_errors(form.plainPassword.first) }}
+                                    </div>
+
+                                    <div class="form-group has-feedback">
+                                        {{ form_widget(form.plainPassword.second) }}
+                                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                        {{ form_errors(form.plainPassword.second) }}
+                                    </div>
+                                    
                                     <input class="btn btn-primary btn-flat pull-right" type="submit" value="{{ 'resetting.reset.submit'|trans }}" />
                                 {{ form_end(form) }}
                             </div>

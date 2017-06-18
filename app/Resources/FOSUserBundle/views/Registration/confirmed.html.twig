@@ -1,0 +1,24 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block body %}
+	{% block fos_user_content %}
+		<meta http-equiv="refresh" content="5;url={{ url('fos_user_profile_edit') }}">
+	    <div class="row" style="margin-top: 30px;">
+	        <div class="col-md-8 col-md-offset-2 col-xs-10 col-xs-offset-1">
+	        	<div class="login-logo">
+                    <a href="{{ path('homepage') }}" title="">
+                        <img src="{{ asset('images/Logo.png') }}" width="200" height="100%" >
+                    </a>
+                </div>
+                
+	        	<p><strong>En este momento te estamos redirigiendo...</strong></p>
+	            <div class="callout callout-info flat">
+	                <h4>Hola de nuevo.</h4>
+	                <p>{{ 'registration.confirmed'|trans({'%username%': user.email}) }}</p>
+	            </div>
+	        </div>
+	    </div>
+	{% endblock fos_user_content %}
+{% endblock body %}

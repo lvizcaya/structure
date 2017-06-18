@@ -12,12 +12,16 @@
                         <img src="{{ asset('images/Logo.png') }}" width="200" height="100%" >
                     </a>
                 </div>
-                <div class="callout callout-danger flat">
+                <div class="callout callout-info flat">
                     <h4>Solo te queda un paso por cumplir.</h4>
                     <p>
                         {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
                     </p>
                 </div>
+                <a class="btn btn-default btn-flat" href="{{ path('homepage') }}" title="">
+                    <i class="ion-chevron-left"></i> 
+                    {{ 'go.home.btn'|trans({}, 'messages') }}
+                </a>
             </div>
         </div>
     {% endblock %}

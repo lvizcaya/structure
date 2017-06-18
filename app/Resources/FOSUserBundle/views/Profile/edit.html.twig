@@ -29,16 +29,7 @@
     <script src="{{ asset('theme/plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
     <script src="{{ asset('theme/plugins/input-mask/jquery.inputmask.numeric.extensions.js') }}"></script>
     <script src="{{ asset('js/tools.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/form.js') }}" type="text/javascript"></script>
 {% endblock %}
 
-{% block avanzu_javascripts_inline %}
-    <script>
-        $('input#fos_user_profile_form_phone').inputmask("99999999[9]", {
-            "placeholder": "",
-            allowMinus: false,
-        });
-        $('#fos_user_profile_form_avatarFile').change(function(e) {
-            imagePreview(e, '#user_img'); 
-        });
-    </script>
-{% endblock %}
+{% block avanzu_javascripts_inline %}{% endblock %}

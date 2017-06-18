@@ -45,3 +45,13 @@ services:
         class: AppBundle\Form\ProfileType
         tags:
             - { name: form.type, alias: app_user_profile }
+
+    app.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: app_user_registration }
+
+    app.form.resetting:
+        class: AppBundle\Form\ResettingType
+        tags:
+            - { name: form.type, alias: app_user_resetting }

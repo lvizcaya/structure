@@ -26,6 +26,12 @@ resetting:
             el Equipo.
 This is a mandatory field: "Este campo es obligatorio"
 form.current_password: "Contraseña actual:"
+form.email: Correo Electrónico
+form.username: Nombre de Usuario
+form.password: Contraseña
+form.password_confirmation: Repita la Contraseña
+form.firstName: Nombres
+form.lastName: Apellidos
 
 #theme
 Member since %date%: Miembro desde %date%
@@ -58,6 +64,8 @@ edit.btn: EDITAR
 filter.btn: BUSCAR
 excel.btn: EXCEL
 profile.edit.submit: ACTUALIZAR PERFIL
+registration.submit: REGISTRAR
+go.home.btn: REGRESAR AL INICIO
 
 # User
 user.firstName.label: "Nombres:"
