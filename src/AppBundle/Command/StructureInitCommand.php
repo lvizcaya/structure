@@ -46,6 +46,29 @@ class StructureInitCommand extends ContainerAwareCommand
         $input5 =new ArrayInput($arguments5);
         $commandSend5->run($input5, $output);
 
+        $commandSend6 = $this->getApplication()->find('liip:imagine:cache:resolve');
+        $arguments6 =[
+            'command' => 'liip:imagine:cache:resolve',
+            'paths' => ["/images/avatar.png"],
+            '--filters' => ["my_thumb_40x40"],
+        ];
+        $input6 = new ArrayInput($arguments6);
+        $commandSend6->run($input6, $output);
+        $arguments6 =[
+            'command' => 'liip:imagine:cache:resolve',
+            'paths' => ['/images/avatar.png'],
+            '--filters' => ['my_thumb_65x65'],
+        ];
+        $input6 = new ArrayInput($arguments6);
+        $commandSend6->run($input6, $output);
+        $arguments6 =[
+            'command' => 'liip:imagine:cache:resolve',
+            'paths' => ['/images/avatar.png'],
+            '--filters' => ['my_thumb_130x130'],
+        ];
+        $input6 = new ArrayInput($arguments6);
+        $commandSend6->run($input6, $output);
+
         $output->writeln([
             'The process has been completed successfully.',
             '--------------------------------------------',
