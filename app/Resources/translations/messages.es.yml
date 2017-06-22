@@ -57,6 +57,7 @@ my_profile.title: MI PERFIL
 dashboard.title: DASHBOARD
 message_no_read.title: MENSAJES SIN LEER
 report.title: "REPORTES"
+datatables.actions.title: "ACCIONES"
 
 # Buttons
 save.btn: GUARDAR
