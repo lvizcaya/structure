@@ -25,3 +25,5 @@
 /web/media/*
 *.sublime-project
 *.sublime-workspace
+
+\.vscode/
